@@ -38,15 +38,15 @@ export class LoginPage implements OnInit {
 
   register() {
     this.LoadingCtr.create({
-      message: 'Loding....'
+      message: 'Loading....'
     }).then((overley) => {
       this.Loading = overley;
       this.Loading.present();
     }),
-    setTimeout(() => {
-      this.Loading.dismiss();
-      this.navCtrl.navigateForward('register');
-    }, 1000);
+      setTimeout(() => {
+        this.Loading.dismiss();
+        this.navCtrl.navigateForward('register');
+      }, 1000);
   }
 
   async login() {
@@ -64,14 +64,12 @@ export class LoginPage implements OnInit {
         this.Loading = overley;
         this.Loading.present();
       }),
-      setTimeout(() => {
-        this.Loading.dismiss(),
-        this.navCtrl.navigateForward('/home');
-      }, 4000);
+        setTimeout(() => {
+          this.Loading.dismiss(),
+            this.navCtrl.navigateForward('/home');
+        }, 4000);
     } catch (error) {
-      alert(error.error.message);
-      // this.mass = tt.error.message
-      // console.log(tt)
+      alert("ชื่อผู้ใช้ หรือ รหัส ผิดพลาด");
     }
 
   }
