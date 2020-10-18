@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
       }),
         setTimeout(() => {
           this.Loading.dismiss(),
-            this.navCtrl.navigateForward('/home');
+          this.navCtrl.navigateForward('/home');
         }, 4000);
     } catch (error) {
       alert('ชื่อผู้ใช้ หรือ รหัส ผิดพลาด');
