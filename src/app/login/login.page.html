@@ -20,24 +20,22 @@
     </ion-item>
 
     <ion-item class="inputcenter">
-      <ion-label  position="floating">รหัสผ่าน</ion-label>
+      <ion-label position="floating">รหัสผ่าน</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-    
+
 
     <div class="buttoncenter">
-      <ion-button 
-      type="submit" [disabled]="!loginForm.valid" style="width: 70%; height: 40px;" expand="block">
+      <ion-button type="submit" [disabled]="!loginForm.valid" style="width: 70%; height: 40px;" expand="block">
         เข้าสู่ระบบ
       </ion-button>
     </div>
 
   </form>
   <div class="buttoncenter">
-    <ion-button (click)="register()"  style="width: 70%; height: 40px; ;" color="danger" expand="block">
+    <ion-button (click)="register()" style="width: 70%; height: 40px; ;" color="danger" expand="block">
       ลงทะเเบียน
-      
-    </ion-button >
+    </ion-button>
   </div>
 
 </ion-content>
