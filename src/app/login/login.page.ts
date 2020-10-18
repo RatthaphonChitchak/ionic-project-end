@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
             this.navCtrl.navigateForward('/home');
         }, 4000);
     } catch (error) {
-      alert("ชื่อผู้ใช้ หรือ รหัส ผิดพลาด");
+      alert('ชื่อผู้ใช้ หรือ รหัส ผิดพลาด');
     }
 
   }
