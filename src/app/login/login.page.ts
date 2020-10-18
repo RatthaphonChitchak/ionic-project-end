@@ -44,9 +44,9 @@ export class LoginPage implements OnInit {
       this.Loading.present();
     }),
     setTimeout(() => {
-      this.navCtrl.navigateForward('register');
       this.Loading.dismiss();
-    }, 300);
+      this.navCtrl.navigateForward('register');
+    }, 1000);
   }
 
   async login() {
