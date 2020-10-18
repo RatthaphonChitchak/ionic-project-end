@@ -25,3 +25,54 @@
 #container a {
   text-decoration: none;
 }
+
+.aa{
+  position:absolute; left:18px; top:270px;width:150px; height:100px;
+}
+
+.ab{
+  position:absolute; left:190px; top:270px;width:150px; height:100px;
+}
+.ac{
+  position:absolute; left:18px; top:400px;width:150px; height:100px;
+}
+.ad{
+  position:absolute; left:190px; top:400px;width:150px; height:100px;
+}
+.ae{
+  position:absolute; left:18px; top:530px;width:150px; height:100px;
+}
+.af{
+  position:absolute; left:190px; top:530px;width:150px; height:100px;
+}
+
+.youtube{
+
+  margin-left: 10%;
+  margin-top: 10%;
+}
+// ion-content{
+
+//   --background: url(assets/img/background.jpg);
+// }
+// .toolbar{
+ 
+//   font-size: 130%;
+
+//   color: rgb(255, 247, 247);
+// }
+ion-toolbar {
+  --background: url('/assets/img/11.png') no-repeat ;
+  // --min-height:1px!important;
+  font-size: 130%;
+
+  color: rgb(255, 247, 247);
+  
+  }
+  
+// ion-content {
+//     --ion-background-color:#444744;
+//   // --background: url('/assets/img/3.jpg') no-repeat;
+// }
+
+

@@ -1,20 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="toolbar">
+      ยินดีตอนรับเข้าสู้LocaltionCovid19
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content  [fullscreen]="true">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <iframe class="youtube" width="280" height="150" src="https://www.youtube.com/embed/U8r3oTVMtQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+  <ion-button color="danger" class="aa" (click)="dashboard()">
+    ข่าวสาร Covid19
+  </ion-button>
+
+  <ion-button color="secondary" class="ab" (click)="infected()">
+    เช็คจำนวนผู้ติดเชื้อ
+  </ion-button>
+
+  <ion-button color="tertiary" class="ac" (click)="map()">
+    เช็คสถานที่มีผู้ติดเชื้อ
+  </ion-button>
+
+  <ion-button color="success" class="ad" (click)="journey()">
+    เช็คประวัติการเดินทาง
+  </ion-button>
+
+  <ion-button color="medium" class="ae" (click)="chet()">
+    ติดต่อสอบถาม
+  </ion-button>
+
+  <ion-button color="warning" class="af" (click)="profile()">
+    Profile
+  </ion-button>
 </ion-content>

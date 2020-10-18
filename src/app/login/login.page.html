@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="toolbar">ยินดีต้อนรับเข้าสู้ Location CV19</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <div>
+    <ion-card>
+      <img src="assets/img/LoginCovid19.png" />
+    </ion-card>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <ion-item class="inputcenter">
+      <ion-label position="floating">ชื่อผู้ใช้</ion-label>
+      <ion-input formControlName="username"></ion-input>
+    </ion-item>
+
+    <ion-item class="inputcenter">
+      <ion-label  position="floating">รหัสผ่าน</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    
+
+    <div class="buttoncenter">
+      <ion-button 
+      type="submit" [disabled]="!loginForm.valid" style="width: 70%; height: 40px;" expand="block">
+        เข้าสู่ระบบ
+      </ion-button>
+    </div>
+
+  </form>
+  <div class="buttoncenter">
+    <ion-button (click)="register()"  style="width: 70%; height: 40px; ;" color="danger" expand="block">
+      ลงทะเเบียน
+      
+    </ion-button >
+  </div>
+
+</ion-content>

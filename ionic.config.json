@@ -1,5 +1,8 @@
 {
   "name": "Covid19",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

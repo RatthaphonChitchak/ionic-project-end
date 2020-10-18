@@ -1,0 +1,27 @@
+.inputcenter{
+
+    padding-left: 15px;
+    padding-right: 20px;
+
+}
+.buttoncenter{
+
+    margin-left: 80px;
+    margin-top: 20px;
+    
+    }
+
+    ion-toolbar {
+        --background: url('/assets/img/11.png') no-repeat ;
+        // --min-height:1px!important;
+        font-size: 130%;
+      
+        color: rgb(255, 247, 247);
+        
+        }    
+        .loader {
+            border-top: 16px solid blue;
+            border-bottom: 16px solid blue;
+          }
+  
+          
