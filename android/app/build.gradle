@@ -3,11 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        def secureProps = new Properties()
-         if (file("../app/src/main/secure.properties").exists()) {
-            file("../app/src/main/secure.properties")?.withInputStream { secureProps.load(it) }
-    }
-        resValue "string", "maps_api_key", (secureProps.getProperty("MAPS_API_KEY") ?: "")
         applicationId "io.ionic.starter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
