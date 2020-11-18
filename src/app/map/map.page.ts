@@ -58,11 +58,10 @@ export class MapPage implements OnInit {
     }).then((overley) => {
       this.loading = overley;
       this.loading.present();
-    }),
-    setTimeout(() => {
       this.loading.dismiss(),
       this.location();
-    }, 5000);
+    });
+
 
     // alert("กรุณาเปิดใช้งาน GPS ทุกครั้ง ")
     // this.marker();
@@ -86,12 +85,8 @@ export class MapPage implements OnInit {
 
       // create map
       this.map = new google.maps.Map(mapEle, {
-
-
         center: this.truck,
         Zoom: 16,
-
-
       });
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
         mapEle.classList.add('show-map');

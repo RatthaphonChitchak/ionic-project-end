@@ -1,36 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="toolbar">
-      ยินดีตอนรับเข้าสู้LocaltionCovid19
+      ยินดีตอนรับเข้าสู้LocationCovid19
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  [fullscreen]="true">
+<ion-content [fullscreen]="true">
 
-  <iframe class="youtube" width="280" height="150" src="https://www.youtube.com/embed/U8r3oTVMtQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
-  <ion-button color="danger" class="aa" (click)="dashboard()">
-    ข่าวสาร Covid19
-  </ion-button>
-
-  <ion-button color="secondary" class="ab" (click)="infected()">
-    เช็คจำนวนผู้ติดเชื้อ
-  </ion-button>
-
-  <ion-button color="tertiary" class="ac" (click)="map()">
-    เช็คสถานที่มีผู้ติดเชื้อ
-  </ion-button>
-
-  <ion-button color="success" class="ad" (click)="journey()">
-    เช็คประวัติการเดินทาง
-  </ion-button>
-
-  <ion-button color="medium" class="ae" (click)="chet()">
-    ติดต่อสอบถาม
-  </ion-button>
-
-  <ion-button color="warning" class="af" (click)="profile()">
-    Profile
-  </ion-button>
+  <div>
+    <ion-item class="titleNews">
+      <ion-card>
+        <ion-slides #slider loop="true" pager="true" [options]="slideOptions" (ionSlideTouchEnd)="slideChanged()">
+          <ion-slide>
+            <img src="https://ch9airport.com/wp-content/uploads/2020/04/6304-covid19-ar1-1.png" />
+          </ion-slide>
+          <ion-slide>
+            <img src="https://ch9airport.com/wp-content/uploads/2020/04/6304-covid19-ar2-1.png" />
+          </ion-slide>
+          <ion-slide>
+            <img src="https://ch9airport.com/wp-content/uploads/2020/04/6304-covid19-ar4-18.png" />
+          </ion-slide>
+        </ion-slides>
+      </ion-card>
+    </ion-item>
+    <ion-card class="allicon">
+      <img (click)="dashboard()"  class="icon1" src="../../assets/button/news.png">
+      <img (click)="infected()" class="icon2" fill="clear" src="../../assets/button/infacted.png">
+      <img (click)="map()" class="icon3" fill="clear" src="../../assets/button/map.png">
+      <img (click)="journey()" class="icon4" fill="clear" src="../../assets/button/journey.png">
+      <img (click)="chet()" class="icon5" fill="clear" src="../../assets/button/chat.png">
+      <img (click)="profile()" class="icon6" fill="clear" src="../../assets/button/profile.png">
+    </ion-card>
+  </div>
 </ion-content>

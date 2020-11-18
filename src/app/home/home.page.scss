@@ -12,67 +12,46 @@
   font-size: 20px;
   line-height: 26px;
 }
-
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
-
 #container a {
   text-decoration: none;
 }
-
-.aa{
-  position:absolute; left:18px; top:270px;width:150px; height:100px;
+.icon1{ 
+   width:120px; height:120px;
 }
-
-.ab{
-  position:absolute; left:190px; top:270px;width:150px; height:100px;
+.icon2{ 
+  width:120px; height:120px;
 }
-.ac{
-  position:absolute; left:18px; top:400px;width:150px; height:100px;
+.icon3{ 
+  width:120px; height:120px;
 }
-.ad{
-  position:absolute; left:190px; top:400px;width:150px; height:100px;
+.icon4{ 
+  width:120px; height:120px;
 }
-.ae{
-  position:absolute; left:18px; top:530px;width:150px; height:100px;
+.icon5{ 
+  width:120px; height:120px;
 }
-.af{
-  position:absolute; left:190px; top:530px;width:150px; height:100px;
+.icon6{ 
+  width:120px; height:120px;
 }
-
-.youtube{
-
-  margin-left: 10%;
-  margin-top: 10%;
+.titleNews{
+  position: fixed; bottom: 59%; left: 2%;
+  width:350px;
 }
-// ion-content{
-
-//   --background: url(assets/img/background.jpg);
-// }
-// .toolbar{
- 
-//   font-size: 130%;
-
-//   color: rgb(255, 247, 247);
-// }
 ion-toolbar {
   --background: url('/assets/img/11.png') no-repeat ;
-  // --min-height:1px!important;
   font-size: 130%;
-
   color: rgb(255, 247, 247);
-  
   }
   
-// ion-content {
-//     --ion-background-color:#444744;
-//   // --background: url('/assets/img/3.jpg') no-repeat;
-// }
+.allicon{
+  text-align:center;
 
+  position: fixed; bottom: -2%; 
+}
 

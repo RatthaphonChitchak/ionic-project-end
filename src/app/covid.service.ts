@@ -1,27 +1,32 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CovidService {
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  constructor(public http: HttpClient) { }
+  getProfile(url: string, token: any) {
+    return this.http.get(url, { headers: this.addStandardHeaders(token) }).toPromise();
+  }
+  addStandardHeaders(token: any) {
+    let header = new HttpHeaders();
+    header = header.append('Content-Type', 'application/json');
+    // header = header.append('Accept', 'application/json');
+    header = header.append('Authorization', `Bearer ${token}` );
+    return header;
+  }
 
-  loginApi(url: string, body: any){
+  loginApi(url: string, body: any) {
     return this.http.post(url, body).toPromise();
   }
-
-  profile(url: string){
-
-    return this.http.get(url).toPromise();
-
-  }
-
   register(url: string, regis: any) {
     return this.http.post(url, regis).toPromise();
-
-
   }
 
 }
