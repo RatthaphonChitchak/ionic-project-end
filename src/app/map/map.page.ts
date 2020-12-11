@@ -37,44 +37,9 @@ export class MapPage implements OnInit {
     this.location();
     this.getToken();
     this.getapi();
-    // this.set();
-    // this.loadingCtr.create({
-    //   message: 'กำลังโหลด Map....'
-    // }).then((overley) => {
-    //   this.loading = overley;
-    //   this.loading.present();
-    //   this.loading.dismiss(),   
-    // });
     this.getLatlongmap();
-  }
-  set(){
-    setInterval(() => {
-      this.postlocaltion();
-    }, 10000);
-  }
-  async getapi() {
-    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
-    this.id = getApi.data._id;
-  }
-  async getLatlongmap() {
-    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
-    this.id = getApi.data._id;
-    const getatlongmap = await this.covidApi.getLatlog(this.getLatlong + this.id);
-    this.getLL = getatlongmap;
-  }
-  getToken() {
-    this.idToken = localStorage.getItem('token');
-  }
-  async postlocaltion() {
-    try {
-      const latlng = {
-        userId: this.id,
-        lat: this.lat,
-        lng: this.lng,
-      };
-      const localtion = await this.covidApi.postLatlog(this.urllatlng, latlng, this.idToken);
-    } catch (error) {
-    }
+    // this.set();
+    
   }
   async location() {
     const watch = await this.geolocation.watchPosition();
@@ -129,6 +94,35 @@ export class MapPage implements OnInit {
       map: this.map,
     });
 
+  }
+  set(){
+    setInterval(() => {
+      this.postlocaltion();
+    }, 10000);
+  }
+  async getapi() {
+    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
+    this.id = getApi.data._id;
+  }
+  async getLatlongmap() {
+    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
+    this.id = getApi.data._id;
+    const getatlongmap = await this.covidApi.getLatlog(this.getLatlong + this.id);
+    this.getLL = getatlongmap;
+  }
+  getToken() {
+    this.idToken = localStorage.getItem('token');
+  }
+  async postlocaltion() {
+    try {
+      const latlng = {
+        userId: this.id,
+        lat: this.lat,
+        lng: this.lng,
+      };
+      const localtion = await this.covidApi.postLatlog(this.urllatlng, latlng, this.idToken);
+    } catch (error) {
+    }
   }
 
 }
