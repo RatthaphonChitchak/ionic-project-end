@@ -33,7 +33,6 @@ export class ProfilePage implements OnInit {
   logout(){
     localStorage.clear();
     this.navCtrl.navigateForward('login');
-    window.history.forward();
   }
   getToken() {
     this.apiPfi = localStorage.getItem('token');

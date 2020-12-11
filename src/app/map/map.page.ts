@@ -34,17 +34,17 @@ export class MapPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.location();
     this.getToken();
     this.getapi();
     // this.set();
-    this.loadingCtr.create({
-      message: 'กำลังโหลด Map....'
-    }).then((overley) => {
-      this.loading = overley;
-      this.loading.present();
-      this.loading.dismiss(),
-        this.location();
-    });
+    // this.loadingCtr.create({
+    //   message: 'กำลังโหลด Map....'
+    // }).then((overley) => {
+    //   this.loading = overley;
+    //   this.loading.present();
+    //   this.loading.dismiss(),   
+    // });
     this.getLatlongmap();
   }
   set(){
@@ -99,11 +99,12 @@ export class MapPage implements OnInit {
             lng: Number(this.getLL.data[i].lng)
           },
           ];
-          console.log(this.makermap);
           this.makermap.forEach(marker => {
             this.marker(marker);
           });
+          console.log(this.makermap);
         }
+
       });
     });
   }
