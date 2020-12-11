@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'modifyprofile',
+    loadChildren: () => import('./modifyprofile/modifyprofile.module').then( m => m.ModifyprofilePageModule)
+  },
 ];
 
 @NgModule({

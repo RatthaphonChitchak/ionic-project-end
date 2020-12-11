@@ -21,6 +21,7 @@ export class RegisterPage implements OnInit {
         firstName: new FormControl('', [Validators.required, Validators.pattern('')]),
         lastName: new FormControl('', [Validators.required, Validators.pattern('')]),
         email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z.a-z]')]),
+        tel: new FormControl('', [Validators.required, Validators.pattern('')]),
         username: new FormControl('', [Validators.required, Validators.pattern('')]),
         password: new FormControl('', [Validators.required, Validators.pattern('')])
 
@@ -41,12 +42,12 @@ export class RegisterPage implements OnInit {
     try {
 
       const regishome = {
-
         firstName: this.regisform.value.firstName,
         lastName: this.regisform.value.lastName,
         username: this.regisform.value.username,
         password: this.regisform.value.password,
-        email: this.regisform.value.email
+        email: this.regisform.value.email,
+        tel: this.regisform.value.tel,
       };
       const regis = await this.covidApi.register(this.urlRegis, regishome);
       this.loadingCtr.create({

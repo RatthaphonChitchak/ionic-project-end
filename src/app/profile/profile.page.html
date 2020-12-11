@@ -3,29 +3,44 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item id="fixed">
-    <ion-icon name="logo-twitter" item-start></ion-icon>
-    {{getName}}
-    <ion-badge item-end></ion-badge><br>
-  </ion-item>
-  <ion-item id="fixed">
-    <ion-icon name="logo-twitter" item-start></ion-icon>
-    {{getName}}
-    <ion-badge item-end></ion-badge><br>
-  </ion-item>
-  <ion-item id="fixed">
-    <ion-icon name="logo-twitter" item-start></ion-icon>
-    {{getName}}
-    <ion-badge item-end></ion-badge><br>
-  </ion-item>
-  <ion-item id="fixed">
-    <ion-icon name="logo-twitter" item-start></ion-icon>
-    {{getName}}
-    <ion-badge item-end></ion-badge><br>
-  </ion-item>
+  <ion-card>
+    <ion-avatar class="imgpro" >
+      <img src="https://scontent.fbkk2-3.fna.fbcdn.net/v/t1.0-9/124458350_4663844030355115_2909742329680535122_n.jpg?_nc_cat=109&ccb=2&_nc_sid=174925&_nc_eui2=AeHJ6UeQV3416GzzpD_NEraTZIPYbffCgZlkg9ht98KBmVcsLC6aPuX_hNayMsrhia9pUvZVa01bdar9M39lgEoc&_nc_ohc=zJi6TIs_J28AX8cB4_X&_nc_ht=scontent.fbkk2-3.fna&oh=1aeec2fd418e0d2253a86f7eeaea5408&oe=5FE6C4A7">
+    </ion-avatar>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>ข้อมูลส่วนตัว</ion-card-subtitle>
+      <ion-card-title>ชื่อ-สกุล  {{getName}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+     username : {{getUsername}}<br>email : {{getEmil}}<br>เบอร์โทรศัพท์ : {{getTel}}<br>เป็นสมาชิกเมื่อ : {{timeRegistor}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-item class="ion-activated">
+      <ion-icon name="warning" slot="start"></ion-icon>
+      <ion-label style="color:rgb(37, 228, 30)">สถานะไม่มีความเสี่ยง</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="walk" slot="start"></ion-icon>
+      <ion-label style="color:rgb(55, 243, 30)">อยู่ในพื้นที่ปลอยภัย</ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-button (click)="modify()" color="warning" expand="block">
+    แก้ไขข้อมูลส่วนตัว
+  </ion-button>
+  <ion-button (click)="logout()" color="danger" expand="block">
+    ออกจากระบบ
+  </ion-button>
 </ion-content>

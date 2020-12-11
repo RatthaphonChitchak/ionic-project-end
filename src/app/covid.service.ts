@@ -28,5 +28,10 @@ export class CovidService {
   register(url: string, regis: any) {
     return this.http.post(url, regis).toPromise();
   }
-
+  postLatlog(url: string, post: any, token: any){
+    return this.http.post(url, post, { headers: this.addStandardHeaders(token) }).toPromise();
+  }
+  getLatlog(url: string){
+    return this.http.get(url).toPromise();
+  }
 }

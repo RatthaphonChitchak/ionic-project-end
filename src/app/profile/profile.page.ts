@@ -1,4 +1,4 @@
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { CovidService } from './../covid.service';
 import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +14,10 @@ export class ProfilePage implements OnInit {
   getName: any;
   getEmil: any;
   getUsername: any;
+  timeRegistor: any;
+  getTel: any;
   constructor(
+    public navCtrl: NavController,
     public LoadingCtr: LoadingController,
     private covidApi: CovidService,
     public storage: Storage
@@ -23,14 +26,25 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.getToken();
     this.getapi();
-
+  }
+  modify(){
+    this.navCtrl.navigateForward('modifyprofile')
+  }
+  logout(){
+    localStorage.clear();
+    this.navCtrl.navigateForward('login');
+    window.history.forward();
   }
   getToken() {
     this.apiPfi = localStorage.getItem('token');
   }
   async getapi() {
     const getApi: any = await this.covidApi.getProfile(this.profileApi, this.apiPfi);
+    this.getTel = getApi.data.tel;
     this.getName = getApi.data.displayName;
+    this.getEmil = getApi.data.email;
+    this.getUsername = getApi.data.username;
+    this.timeRegistor = new Date(getApi.data.created);
   }
 
 }

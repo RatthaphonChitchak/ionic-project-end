@@ -40,8 +40,8 @@ export class LoginPage implements OnInit {
     }).then((overley) => {
       this.Loading = overley;
       this.Loading.present();
-      this.Loading.dismiss();
       this.navCtrl.navigateForward('register');
+      this.Loading.dismiss();
     });
   }
   async login() {
@@ -63,7 +63,6 @@ export class LoginPage implements OnInit {
     } catch (error) {
       alert('ชื่อผู้ใช้ หรือ รหัส ผิดพลาด');
     }
-
   }
 
 

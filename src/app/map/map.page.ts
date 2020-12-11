@@ -1,19 +1,10 @@
 import { LoadingController } from '@ionic/angular';
 import { CovidService } from './../covid.service';
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { title } from 'process';
 
 declare var google;
-
-interface Marker {
-  position: {
-    lat: number,
-    lng: number,
-  };
-  title: string;
-}
-
 
 @Component({
   selector: 'app-map',
@@ -21,30 +12,21 @@ interface Marker {
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage implements OnInit {
+  urllatlng = 'https://latlongpnru.herokuapp.com/api/latlongs';
+  profileApi = 'https://ratthaphoncovid19.herokuapp.com/api/getuser';
+  getLatlong = 'https://latlongpnru.herokuapp.com/api/userlatlong/';
   private loading;
   map = null;
   lat: any;
   lng: any;
   truck: any;
-
-  markers: Marker[] = [
-    {
-      position: {
-        lat: 13.8461602,
-        lng: 100.566406,
-      },
-      title: 'Parque Simón Bolivar'
-    },
-    {
-      position: {
-        lat: 13.8779769,
-        lng: 100.5876494,
-      },
-      title: 'Jardín Botánico'
-    }
-  ];
-
-
+  idToken: string;
+  id: string;
+  showlat: any;
+  showlng: any;
+  getLL: any;
+  getatlongmap: any;
+  makermap: any;
   constructor(
     private loadingCtr: LoadingController,
     private covidApi: CovidService,
@@ -52,38 +34,57 @@ export class MapPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    alert('กรุณาเปิดใช้งาน GPS ทุกครั้ง ');
+    this.getToken();
+    this.getapi();
+    // this.set();
     this.loadingCtr.create({
       message: 'กำลังโหลด Map....'
     }).then((overley) => {
       this.loading = overley;
       this.loading.present();
       this.loading.dismiss(),
-      this.location();
+        this.location();
     });
-
-
-    // alert("กรุณาเปิดใช้งาน GPS ทุกครั้ง ")
-    // this.marker();
-    // this.renderMarkers();
+    this.getLatlongmap();
   }
-
-  location() {
-    const watch = this.geolocation.watchPosition();
-    watch.subscribe((result) => {
-
-      this.truck = new google.maps.LatLng(result.coords.latitude, result.coords.longitude);
-      const mapOptions = {
-
-        disableDefaultUI: true
-
+  set(){
+    setInterval(() => {
+      this.postlocaltion();
+    }, 10000);
+  }
+  async getapi() {
+    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
+    this.id = getApi.data._id;
+  }
+  async getLatlongmap() {
+    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
+    this.id = getApi.data._id;
+    const getatlongmap = await this.covidApi.getLatlog(this.getLatlong + this.id);
+    this.getLL = getatlongmap;
+  }
+  getToken() {
+    this.idToken = localStorage.getItem('token');
+  }
+  async postlocaltion() {
+    try {
+      const latlng = {
+        userId: this.id,
+        lat: this.lat,
+        lng: this.lng,
       };
-      // create a new map by passing HTMLElement
+      const localtion = await this.covidApi.postLatlog(this.urllatlng, latlng, this.idToken);
+    } catch (error) {
+    }
+  }
+  async location() {
+    const watch = await this.geolocation.watchPosition();
+    watch.subscribe((result) => {
+      // ตัวแปรเก็บ latlng
+      this.lat = result.coords.latitude;
+      this.lng = result.coords.longitude;
+      // ตัวแปรแสดง localtion
+      this.truck = new google.maps.LatLng(result.coords.latitude, result.coords.longitude);
       const mapEle: HTMLElement = document.getElementById('map');
-      // create LatLng object
-      // const LatLng = {lat: 13.4444444, lng: 100.000000} ;
-
-      // create map
       this.map = new google.maps.Map(mapEle, {
         center: this.truck,
         Zoom: 16,
@@ -91,39 +92,42 @@ export class MapPage implements OnInit {
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
         mapEle.classList.add('show-map');
         // this.renderMarkers()
-        this.markers.forEach(marker => {
-          this.userlocation(marker);
-          // this.marker(marker)
-        });
-
+        this.userlocation();
+        for (let i = 0; i < this.getLL.data.length; i++) {
+          this.makermap = [{
+            lat: Number(this.getLL.data[i].lat),
+            lng: Number(this.getLL.data[i].lng)
+          },
+          ];
+          console.log(this.makermap);
+          this.makermap.forEach(marker => {
+            this.marker(marker);
+          });
+        }
       });
-
     });
-
-
   }
-
-  // renderMarkers() {
-  //   this.markers.forEach(marker => {
-  //     this.addMarker(marker);
-  //   });
-  // }
-  userlocation(marker: Marker) {
+  userlocation() {
     return new google.maps.Marker({
-
+      icon: {
+        url: 'assets/maker-localtion/userlocaltion.png',
+        scaledSize: new google.maps.Size(50, 50)
+      },
       position: this.truck,
-      map: this.map,
-
-
+      map: this.map
     });
-    // marker(marker: Marker); {
-    //   return new google.maps.Marker({
-    //     position: marker.position,
-    //     map: this.map,
-    //     title: marker.title
-    //   });
-    // }
   }
+  marker(marker) {
 
+    return new google.maps.Marker({
+      icon: {
+        url: 'assets/maker-localtion/location.png',
+        scaledSize: new google.maps.Size(60, 60)
+      },
+      position: marker,
+      map: this.map,
+    });
+
+  }
 
 }
