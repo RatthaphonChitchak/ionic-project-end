@@ -35,7 +35,6 @@ export class JourneyPage implements OnInit {
     this.id = getApi.data._id;
     const getatlongmap: any = await this.covidApi.getLatlog(this.getLatlong + this.id);
     this.getlatlng =  getatlongmap.data;
-    console.log(this.getlatlng);
   }
     getToken() {
     this.idToken = localStorage.getItem('token');
