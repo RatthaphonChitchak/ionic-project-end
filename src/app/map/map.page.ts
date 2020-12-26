@@ -15,6 +15,7 @@ export class MapPage implements OnInit {
   urllatlng = 'https://latlongpnru.herokuapp.com/api/latlongs';
   profileApi = 'https://ratthaphoncovid19.herokuapp.com/api/getuser';
   getLatlong = 'https://latlongpnru.herokuapp.com/api/userlatlong/';
+  public setOn: boolean = false;
   private loading;
   map = null;
   lat: any;
@@ -27,6 +28,7 @@ export class MapPage implements OnInit {
   getLL: any;
   getatlongmap: any;
   makermap: any;
+  clear: any;
   constructor(
     private loadingCtr: LoadingController,
     private covidApi: CovidService,
@@ -35,20 +37,19 @@ export class MapPage implements OnInit {
 
   ngOnInit() {
     this.location();
+    setInterval(() => {
+      this.location();
+    }, 60000);
     this.getToken();
     this.getapi();
     this.getLatlongmap();
-    // this.set();
-    
   }
   async location() {
-    const watch = await this.geolocation.watchPosition();
-    watch.subscribe((result) => {
-      // ตัวแปรเก็บ latlng
-      this.lat = result.coords.latitude;
-      this.lng = result.coords.longitude;
-      // ตัวแปรแสดง localtion
-      this.truck = new google.maps.LatLng(result.coords.latitude, result.coords.longitude);
+    
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+      this.truck = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       const mapEle: HTMLElement = document.getElementById('map');
       this.map = new google.maps.Map(mapEle, {
         center: this.truck,
@@ -58,6 +59,7 @@ export class MapPage implements OnInit {
         mapEle.classList.add('show-map');
         // this.renderMarkers()
         this.userlocation();
+        setTimeout(() => {
         for (let i = 0; i < this.getLL.data.length; i++) {
           this.makermap = [{
             lat: Number(this.getLL.data[i].lat),
@@ -67,11 +69,13 @@ export class MapPage implements OnInit {
           this.makermap.forEach(marker => {
             this.marker(marker);
           });
-          console.log(this.makermap);
         }
-
+      }, 5000);
       });
-    });
+    // });
+  }).catch((error) => {
+    console.log('Error getting location', error);
+  });
   }
   userlocation() {
     return new google.maps.Marker({
@@ -96,9 +100,13 @@ export class MapPage implements OnInit {
 
   }
   set(){
-    setInterval(() => {
-      this.postlocaltion();
-    }, 10000);
+    if (this.setOn === true) {
+      this.clear = setInterval(() => {
+        this.postlocaltion();
+      }, 10000);
+    } else {
+      clearInterval(this.clear)
+    }
   }
   async getapi() {
     const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
@@ -124,5 +132,5 @@ export class MapPage implements OnInit {
     } catch (error) {
     }
   }
-
 }
+
