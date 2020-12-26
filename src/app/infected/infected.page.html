@@ -3,17 +3,61 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>infected</ion-title>
+    <ion-title>เช็กจำนวนผูติดเชื้อ</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <h5>{{resuil.Confirmed}}</h5> 
-  <h5>{{resuil.Recovered}}</h5>
-  <h5>{{resuil.Hospitalized}}</h5>
-  <h5>{{resuil.Deaths}}</h5>
-  <h5>{{resuil.NewRecovered}}</h5>
-  <h5>{{resuil.NewDeaths}}</h5>
-  <h5>{{resuil.NewHospitalized}}</h5>
-  <h5>{{resuil.UpdateDate}}</h5>
+  <ion-card>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button color="danger" style="width: 140px; height: 100px;">
+          <h5 style="font-size: 20px;">ผู้ติดเชื้อปัจจุบัน <br />{{resuil.Hospitalized}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button color="warning"style="width: 140px; height: 100px;margin-right: 10%;">
+          <h5 style="font-size: 20px;">ติดเชื้อเพิ่ม <br />{{resuil.NewHospitalized}}</h5>
+        </ion-button>
+        <ion-button color="medium" style="width: 140px; height: 100px;">
+          <h5 style="font-size: 20px;">ผู้ติดเชื้อสะสม <br />{{resuil.Confirmed}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button color="secondary" style="width: 140px; height: 100px;margin-right: 10%;">
+          <h5 style="font-size: 20px;">กำลังรักษา<br />{{resuil.Hospitalized}}</h5>
+        </ion-button>
+        <ion-button color="success" style="width: 140px; height: 100px;">
+          <h5 style="font-size: 20px;">หายแล้วเพิ่ม <br />{{resuil.NewRecovered}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button style="width: 140px; height: 100px;margin-right: 10%;">
+          <h5 style="font-size: 20px;">รักษาหายแล้ว <br />{{resuil.Recovered}}</h5>
+        </ion-button>
+        <ion-button color="medium" style="width: 140px; height: 100px;">
+          <h5 style="font-size: 20px;">เสียชีวิตเพิ่ม <br />{{resuil.NewDeaths}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button color="dark" style="width: 140px; height: 100px;">
+          <h5 style="font-size: 20px;">เสียชิต <br />{{resuil.Deaths}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item style="text-align: center;">
+      <ion-label>
+        <ion-button color="light" style="width: 400px; height: 70px;">
+          <h5 style="font-size: 20px; ">อัปเดตล่าสุด <br />{{resuil.UpdateDate}}</h5>
+        </ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-card>
 </ion-content>
