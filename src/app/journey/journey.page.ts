@@ -8,11 +8,12 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./journey.page.scss'],
 })
 export class JourneyPage implements OnInit {
-  profileApi = 'http://localhost:3001/api/getuser';
-  getLatlong = 'http://localhost:3000/api/userlatlong/';
+  urllatlng = 'https://latlongpnru.herokuapp.com/api/latlongs';
+  profileApi = 'https://ratthaphoncovid19.herokuapp.com/api/getuser';
+  getLatlong = 'https://latlongpnru.herokuapp.com/api/userlatlong/';
   idToken: string;
   id: string;
-  getLL: any;
+  getlatlng: any;
   constructor(
     public covidApi: CovidService,
     private loadingCtr: LoadingController,
@@ -24,15 +25,17 @@ export class JourneyPage implements OnInit {
     this.getLatlongmap();
   }
   async getapi() {
-    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
-    this.id = getApi.data._id;
+    setTimeout(async () => {
+      const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
+      this.id = getApi.data._id;
+    }, 5000);
   }
   async getLatlongmap() {
     const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
     this.id = getApi.data._id;
-    const getatlongmap = await this.covidApi.getLatlog(this.getLatlong + this.id);
-    this.getLL = getatlongmap;
-    console.log(this.getLL);
+    const getatlongmap: any = await this.covidApi.getLatlog(this.getLatlong + this.id);
+    this.getlatlng =  getatlongmap.data;
+    console.log(this.getlatlng);
   }
     getToken() {
     this.idToken = localStorage.getItem('token');

@@ -3,10 +3,19 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>journey</ion-title>
+    <ion-title>ประวัติการเดินทาง</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div *ngFor="let i of getlatlng" >
+<ion-card style="background-color: aquamarine;">
+  <ion-item >
+    <ion-label >{{i.created}} <br/> <br/> {{i.lat}} <br/> <br/> {{i.lng}} </ion-label>
+    <ion-button (click)="onClick()" expand="block" shape="round">
+      เช็กตำแหน่ง
+    </ion-button>
+  </ion-item>
+</ion-card>
+</div>
 </ion-content>

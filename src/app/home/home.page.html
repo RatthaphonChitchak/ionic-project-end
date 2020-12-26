@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <div>
-    <ion-card>
+    <ion-card style="background-color: aquamarine;">
     <ion-item >
       <ion-card>
         <ion-slides #slider loop="true" pager="true" [options]="slideOptions" (ionSlideTouchEnd)="slideChanged()">
@@ -25,26 +25,24 @@
       </ion-card>
     </ion-item>
   </ion-card>
-    <ion-card>
+    <ion-card style="background-color: aquamarine;">
       <ion-item>
         <ion-label style="text-align: center;">
-          <img (click)="dashboard()"  class="icon1" src="../../assets/button/news.png">
+          <img style="margin-right: 10%;" (click)="dashboard()"  class="icon1" src="../../assets/button/news.png">
           <img (click)="infected()" class="icon2" fill="clear" src="../../assets/button/infacted.png">
         </ion-label>
       </ion-item>
-    </ion-card>
-    <ion-card>
+  
       <ion-item>
         <ion-label style="text-align: center;">
-          <img (click)="map()" class="icon3" fill="clear" src="../../assets/button/map.png">
+          <img style="margin-right: 10%;"(click)="map()" class="icon3" fill="clear" src="../../assets/button/map.png">
           <img (click)="journey()" class="icon4" fill="clear" src="../../assets/button/journey.png">
         </ion-label>
       </ion-item>
-    </ion-card>
-    <ion-card>
+    
       <ion-item>
         <ion-label style="text-align: center;">
-          <img (click)="chet()" class="icon5" fill="clear" src="../../assets/button/chat.png">
+          <img style="margin-right: 10%;"(click)="chet()" class="icon5" fill="clear" src="../../assets/button/chat.png">
           <img (click)="profile()" class="icon6" fill="clear" src="../../assets/button/profile.png">
         </ion-label>
       </ion-item>
