@@ -16,6 +16,7 @@ export class ProfilePage implements OnInit {
   getUsername: any;
   timeRegistor: any;
   getTel: any;
+  img:any;
   constructor(
     public navCtrl: NavController,
     public LoadingCtr: LoadingController,
@@ -44,6 +45,7 @@ export class ProfilePage implements OnInit {
     this.getEmil = getApi.data.email;
     this.getUsername = getApi.data.username;
     this.timeRegistor = new Date(getApi.data.created);
+    this.img = getApi.data.profileImageURL
   }
 
 }

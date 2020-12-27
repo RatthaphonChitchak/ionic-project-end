@@ -8,6 +8,28 @@
 </ion-header>
 
 <ion-content>
+  <div>
+    <ion-card>
+      <ion-item>
+        <ion-label >
+          <ion-avatar *ngIf="show"  class="imgpro">
+            <img  class="center"src="{{postProfile}}">
+          </ion-avatar>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-button color="primary" expand="block" size="medium">
+            <input type="file" (change)="uploadImage($event.target.files)" />
+          </ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div *ngIf="percentageVal | async as percentage">
+  </div>
+  <div *ngIf="trackSnapshot | async as snap">
+  </div>
   <form [formGroup]="regisform" (ngSubmit)="register()">
     <ion-item>
       <ion-label position="floating">ชื่อ</ion-label>
@@ -38,6 +60,7 @@
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
-    <ion-button class="buttoncenter" type="submit" [disabled]="!regisform.valid" expand="full" style="width: 70%; height: 40px; ;" color="danger" expand="block" color="danger">บันทึกลงทะเทียน</ion-button>
+    <ion-button class="buttoncenter" type="submit" [disabled]="!regisform.valid" expand="full"
+      style="width: 70%; height: 40px; ;" color="danger" expand="block" color="danger">บันทึกลงทะเทียน</ion-button>
   </form>
 </ion-content>
