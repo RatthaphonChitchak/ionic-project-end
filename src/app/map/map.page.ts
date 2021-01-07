@@ -69,17 +69,16 @@ export class MapPage implements OnInit {
             this.makermap.forEach(marker => {
               this.marker(marker);
             });
-            
           }
           this.loading.dismissOnPageChange();
         }, 5000);
-        
+
       });
       this.loading.dismissOnPageChange();
-  }).catch((error) => {
-    this.loading.dismissOnPageChange();
-    console.log('Error getting location', error);
-  });
+    }).catch((error) => {
+      this.loading.dismissOnPageChange();
+      console.log('Error getting location', error);
+    });
   }
   userlocation() {
     return new google.maps.Marker({
@@ -92,7 +91,6 @@ export class MapPage implements OnInit {
     });
   }
   marker(marker) {
-
     return new google.maps.Marker({
       icon: {
         url: 'assets/maker-localtion/location.png',
@@ -101,9 +99,8 @@ export class MapPage implements OnInit {
       position: marker,
       map: this.map,
     });
-
   }
-  set(){
+  set() {
     if (this.setOn === true) {
       this.clear = setInterval(() => {
         this.postlocaltion();

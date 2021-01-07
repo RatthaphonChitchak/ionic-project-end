@@ -17,8 +17,6 @@ export class InfectedPage implements OnInit {
   api() {
     this.http.get('https://covid19.th-stat.com/api/open/today').subscribe(data => {
       this.resuil = data;
-      
-
     });
   }
 }

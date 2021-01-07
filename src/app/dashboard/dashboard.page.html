@@ -8,5 +8,14 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-item *ngFor="let news of newsOnline" >
+      <h1>{{news.name}}</h1>
+    </ion-item>
+    <ion-item *ngFor="let img of img ">
+      <ion-label>
+        <ion-img src="{{img}}"></ion-img>
+      </ion-label>
+    </ion-item>
+  </ion-card>
 </ion-content>

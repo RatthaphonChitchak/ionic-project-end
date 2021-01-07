@@ -36,8 +36,10 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.login();
   }
-  register() {
+  async register() {
+    await this.loading.presentLoadingWithOptions();
     this.navCtrl.navigateForward('register');
+    this.loading.dismissOnPageChange();
   }
   async login() {
     await this.loading.presentLoadingWithOptions();
@@ -51,8 +53,9 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateForward('/home');
       this.loading.dismissOnPageChange();
     } catch (error) {
+
+      this.loading.presentToastWithOptions(error.error.message);
       this.loading.dismissOnPageChange();
-      alert('ชื่อผู้ใช้ หรือ รหัส ผิดพลาด');
     }
   }
 

@@ -12,11 +12,10 @@ export class LoadingService {
 
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
-      spinner: 'crescent',
+      spinner: 'dots',
       message: 'กำลังโหลด...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
-      mode: 'ios'
 
     });
     return await loading.present();
@@ -28,8 +27,7 @@ export class LoadingService {
     const toast = await this.toastController.create({
       message: err,
       duration: 4000,
-      position: 'bottom',
-      mode: 'ios',
+      position: 'top',
       color: 'danger'
     });
     toast.present();
@@ -39,7 +37,6 @@ export class LoadingService {
       message: Success,
       duration: 4000,
       position: 'bottom',
-      mode: 'ios',
       color: 'success'
     });
     toast.present();

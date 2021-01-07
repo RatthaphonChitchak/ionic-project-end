@@ -1,3 +1,4 @@
+import { LoadingService } from './../loading.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { CovidService } from './../covid.service';
 import { Component, OnInit } from '@angular/core';
@@ -32,10 +33,9 @@ export class RegisterPage implements OnInit {
   private filesCollection: AngularFirestoreCollection<imgFile>;
   show: boolean = true;
   urlRegis = 'https://ratthaphoncovid19.herokuapp.com/api/auth/signup';
-  private Loading;
   regisform: FormGroup;
   constructor(
-    private loadingCtr: LoadingController,
+    public loading: LoadingService,
     private covidApi: CovidService,
     public navCtrl: NavController,
     private afs: AngularFirestore,
@@ -62,6 +62,7 @@ export class RegisterPage implements OnInit {
     this.register();
   }
   async register() {
+    await this.loading.presentToastWithOptions
     try {
       const regishome = {
         firstName: this.regisform.value.firstName,
@@ -73,17 +74,10 @@ export class RegisterPage implements OnInit {
         profileImageURL: this.postProfile,
       };
       const regis = await this.covidApi.register(this.urlRegis, regishome);
-      this.loadingCtr.create({
-        message: 'กรุณารอสักครู่กำลังบันทึก....'
-      }).then((overley) => {
-        this.Loading = overley;
-        this.Loading.present();
-      }),
-        setTimeout(() => {
-          this.Loading.dismiss(),
-            this.navCtrl.navigateForward('login');
-        }, 4000);
+      this.navCtrl.navigateForward('login');
+      this.loading.dismissOnPageChange();
     } catch (error) {
+      this.loading.dismissOnPageChange();
     }
   }
   uploadImage(event: FileList) {
