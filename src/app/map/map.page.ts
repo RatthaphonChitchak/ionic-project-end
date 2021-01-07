@@ -1,3 +1,4 @@
+import { LoadingService } from './../loading.service';
 import { LoadingController } from '@ionic/angular';
 import { CovidService } from './../covid.service';
 import { Component, OnInit, } from '@angular/core';
@@ -16,7 +17,6 @@ export class MapPage implements OnInit {
   profileApi = 'https://ratthaphoncovid19.herokuapp.com/api/getuser';
   getLatlong = 'https://latlongpnru.herokuapp.com/api/userlatlong/';
   public setOn: boolean = false;
-  private loading;
   map = null;
   lat: any;
   lng: any;
@@ -30,7 +30,7 @@ export class MapPage implements OnInit {
   makermap: any;
   clear: any;
   constructor(
-    private loadingCtr: LoadingController,
+    public loading: LoadingService,
     private covidApi: CovidService,
     public geolocation: Geolocation
   ) { }
@@ -45,7 +45,7 @@ export class MapPage implements OnInit {
     this.getLatlongmap();
   }
   async location() {
-    
+    await this.loading.presentLoadingWithOptions();
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -57,23 +57,27 @@ export class MapPage implements OnInit {
       });
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
         mapEle.classList.add('show-map');
-        // this.renderMarkers()
         this.userlocation();
+        this.loading.presentLoadingWithOptions();
         setTimeout(() => {
-        for (let i = 0; i < this.getLL.data.length; i++) {
-          this.makermap = [{
-            lat: Number(this.getLL.data[i].lat),
-            lng: Number(this.getLL.data[i].lng)
-          },
-          ];
-          this.makermap.forEach(marker => {
-            this.marker(marker);
-          });
-        }
-      }, 5000);
+          for (let i = 0; i < this.getLL.data.length; i++) {
+            this.makermap = [{
+              lat: Number(this.getLL.data[i].lat),
+              lng: Number(this.getLL.data[i].lng)
+            },
+            ];
+            this.makermap.forEach(marker => {
+              this.marker(marker);
+            });
+            
+          }
+          this.loading.dismissOnPageChange();
+        }, 5000);
+        
       });
-    // });
+      this.loading.dismissOnPageChange();
   }).catch((error) => {
+    this.loading.dismissOnPageChange();
     console.log('Error getting location', error);
   });
   }

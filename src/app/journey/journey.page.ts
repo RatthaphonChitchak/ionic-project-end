@@ -1,3 +1,4 @@
+import { LoadingService } from './../loading.service';
 import { CovidService } from './../covid.service';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
@@ -15,6 +16,7 @@ export class JourneyPage implements OnInit {
   id: string;
   getlatlng: any;
   constructor(
+    public loading: LoadingService,
     public covidApi: CovidService,
     private loadingCtr: LoadingController,
   ) { }
@@ -25,10 +27,10 @@ export class JourneyPage implements OnInit {
     this.getLatlongmap();
   }
   async getapi() {
-    setTimeout(async () => {
+      await this.loading.presentLoadingWithOptions();
       const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
       this.id = getApi.data._id;
-    }, 5000);
+      this.loading.dismissOnPageChange();
   }
   async getLatlongmap() {
     const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);

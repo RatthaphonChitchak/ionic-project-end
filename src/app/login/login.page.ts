@@ -1,3 +1,4 @@
+import { LoadingService } from './../loading.service';
 import { Storage } from '@ionic/storage';
 import { CovidService } from './../covid.service';
 import { Component, OnInit, } from '@angular/core';
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(
+    public loading: LoadingService,
     public storage: Storage,
     private LoadingCtr: LoadingController,
     private CovidApi: CovidService,
@@ -35,16 +37,10 @@ export class LoginPage implements OnInit {
     this.login();
   }
   register() {
-    this.LoadingCtr.create({
-      message: 'Loading....'
-    }).then((overley) => {
-      this.Loading = overley;
-      this.Loading.present();
-      this.navCtrl.navigateForward('register');
-      this.Loading.dismiss();
-    });
+    this.navCtrl.navigateForward('register');
   }
   async login() {
+    await this.loading.presentLoadingWithOptions();
     try {
       const loginhome = {
         username: this.loginForm.value.username,
@@ -52,15 +48,10 @@ export class LoginPage implements OnInit {
       };
       const res: any = await this.CovidApi.loginApi(this.urllogin, loginhome);
       localStorage.setItem('token', res.token);
-      this.LoadingCtr.create({
-        message: 'กรุณารอสักครู่เข้าสู่ระบบ.....'
-      }).then((overley) => {
-        this.Loading = overley;
-        this.Loading.present();
-        this.Loading.dismiss();
-        this.navCtrl.navigateForward('/home');
-      });
+      this.navCtrl.navigateForward('/home');
+      this.loading.dismissOnPageChange();
     } catch (error) {
+      this.loading.dismissOnPageChange();
       alert('ชื่อผู้ใช้ หรือ รหัส ผิดพลาด');
     }
   }
