@@ -9,14 +9,13 @@ export class LoadingService {
   constructor(
     public loadingController: LoadingController,
     public toastController: ToastController) { }
-
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'dots',
       message: 'กำลังโหลด...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
-
+      mode: "ios"
     });
     return await loading.present();
   }

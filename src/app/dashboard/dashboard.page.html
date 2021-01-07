@@ -3,19 +3,19 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>dashboard</ion-title>
+    <ion-title>ข่าวสาร</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-item *ngFor="let news of newsOnline" >
-      <h1>{{news.name}}</h1>
-    </ion-item>
-    <ion-item *ngFor="let img of img ">
-      <ion-label>
-        <ion-img src="{{img}}"></ion-img>
-      </ion-label>
-    </ion-item>
+
+  <ion-card style="background-color: rgb(216, 216, 216);" *ngFor="let news of newsOnline" mode="ios">
+    <img [src]="news.urlimg" />
+    <ion-card-header>
+      <ion-card-title>{{news.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{news.detal}}
+    </ion-card-content>
   </ion-card>
 </ion-content>

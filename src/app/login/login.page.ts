@@ -2,7 +2,7 @@ import { LoadingService } from './../loading.service';
 import { Storage } from '@ionic/storage';
 import { CovidService } from './../covid.service';
 import { Component, OnInit, } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { NavController, LoadingController } from '@ionic/angular';
 
@@ -27,8 +27,8 @@ export class LoginPage implements OnInit {
     public navCtrl: NavController
   ) {
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('',Validators.required),
+      password: new FormControl('',Validators.required)
     });
   }
   ngOnInit() {
@@ -53,11 +53,8 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateForward('/home');
       this.loading.dismissOnPageChange();
     } catch (error) {
-
       this.loading.presentToastWithOptions(error.error.message);
       this.loading.dismissOnPageChange();
     }
   }
-
-
 }
