@@ -104,7 +104,7 @@ export class MapPage implements OnInit {
     if (this.setOn === true) {
       this.clear = setInterval(() => {
         this.postlocaltion();
-      }, 10000);
+      }, 5000);
     } else {
       clearInterval(this.clear)
     }

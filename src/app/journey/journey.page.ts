@@ -1,7 +1,7 @@
 import { LoadingService } from './../loading.service';
 import { CovidService } from './../covid.service';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-journey',
@@ -18,30 +18,28 @@ export class JourneyPage implements OnInit {
   constructor(
     public loading: LoadingService,
     public covidApi: CovidService,
-    private loadingCtr: LoadingController,
   ) { }
 
   ngOnInit() {
-    this.getapi();
     this.getToken();
     this.getLatlongmap();
   }
-  async getapi() {
-      await this.loading.presentLoadingWithOptions();
+  async getLatlongmap() {
+    await this.loading.presentLoadingWithOptions();
+    try {
       const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
       this.id = getApi.data._id;
+      const getatlongmap: any = await this.covidApi.getLatlog(this.getLatlong + this.id);
+      this.getlatlng =  getatlongmap.data;
       this.loading.dismissOnPageChange();
-  }
-  async getLatlongmap() {
-    const getApi: any = await this.covidApi.getProfile(this.profileApi, this.idToken);
-    this.id = getApi.data._id;
-    const getatlongmap: any = await this.covidApi.getLatlog(this.getLatlong + this.id);
-    this.getlatlng =  getatlongmap.data;
+    } catch (error) {
+      this.loading.presentToastWithOptions('มีบางอย่างผิดพลาก');
+    }
+
   }
     getToken() {
     this.idToken = localStorage.getItem('token');
   }
   openmap(){
-    
   }
 }
