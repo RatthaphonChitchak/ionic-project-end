@@ -64,7 +64,7 @@ export class RegisterPage implements OnInit {
     this.loading.dismissOnPageChange();
   }
   async register() {
-    await this.loading.presentToastWithOptions
+    await this.loading.presentLoadingWithOptions()
     try {
       const regishome = {
         firstName: this.regisform.value.firstName,
