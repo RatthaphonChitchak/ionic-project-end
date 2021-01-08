@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  api = 'http://localhost:3000/api/newss'
   newsOnline: any;
   img: any;
   constructor(private http: HttpClient) { }
@@ -16,10 +15,9 @@ export class DashboardPage implements OnInit {
     this.getnews();
   }
   getnews() {
-   this.http.get<any>('http://localhost:3000/api/newss').subscribe(res => {
+   this.http.get<any>('http://localhost:3010/api/newss').subscribe(res => {
       this.newsOnline = res.data;
       this.img = res.data.urlimg;
-      console.log(this.img);
     });
   }
 

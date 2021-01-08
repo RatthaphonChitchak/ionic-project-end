@@ -41,4 +41,7 @@ export class JourneyPage implements OnInit {
     getToken() {
     this.idToken = localStorage.getItem('token');
   }
+  openmap(){
+    
+  }
 }

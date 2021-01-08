@@ -9,10 +9,10 @@
 
 <ion-content>
   <div *ngFor="let i of getlatlng" >
-<ion-card style="background-color: aquamarine;">
+<ion-card style="background-color: aquamarine;" mode="ios">
   <ion-item >
     <ion-label >{{i.created}} <br/> <br/> {{i.lat}} <br/> <br/> {{i.lng}} </ion-label>
-    <ion-button (click)="onClick()" expand="block" shape="round">
+    <ion-button (click)="openmap()" expand="block" shape="round">
       เช็กตำแหน่ง
     </ion-button>
   </ion-item>

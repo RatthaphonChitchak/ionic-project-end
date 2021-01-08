@@ -58,8 +58,10 @@ export class RegisterPage implements OnInit {
   }
   ngOnInit() {
   }
-  ngSubmit() {
+  async ngSubmit() {
+    await this.loading.presentLoadingWithOptions();
     this.register();
+    this.loading.dismissOnPageChange();
   }
   async register() {
     await this.loading.presentToastWithOptions
