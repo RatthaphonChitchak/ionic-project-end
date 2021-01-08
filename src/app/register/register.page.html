@@ -13,7 +13,7 @@
       <ion-item>
         <ion-label >
           <ion-avatar *ngIf="show"  class="imgpro">
-            <img  class="center"src="{{postProfile}}">
+            <img src="{{postProfile}}">
           </ion-avatar>
         </ion-label>
       </ion-item>
@@ -30,7 +30,8 @@
   </div>
   <div *ngIf="trackSnapshot | async as snap">
   </div>
-  <form [formGroup]="regisform" (ngSubmit)="register()">
+  
+  <form [formGroup]="regisform" (ngSubmit)="register()" style="text-align: center;">
     <ion-item>
       <ion-label position="floating">ชื่อ</ion-label>
       <ion-input formControlName="firstName"></ion-input>
@@ -59,8 +60,7 @@
       <ion-label position="floating">รหัสผ่าน</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
-
-    <ion-button class="buttoncenter" type="submit" [disabled]="!regisform.valid" expand="full"
-      style="width: 70%; height: 40px; ;" color="danger" expand="block" color="danger">บันทึกลงทะเทียน</ion-button>
+        <ion-button  type="submit" [disabled]="!regisform.valid" expand="full"
+        color="danger" expand="block"   color="danger">บันทึกลงทะเทียน</ion-button>
   </form>
 </ion-content>
