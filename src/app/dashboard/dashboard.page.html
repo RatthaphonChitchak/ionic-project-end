@@ -12,7 +12,7 @@
   <ion-card style="background-color: rgb(216, 216, 216);" *ngFor="let news of newsOnline" mode="ios">
     <img [src]="news.urlimg" />
     <ion-card-header>
-      <ion-card-title>{{news.name}}</ion-card-title>
+      <ion-card-title style="font-size:larger ;">{{news.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       {{news.detal}}

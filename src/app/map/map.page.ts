@@ -69,6 +69,7 @@ export class MapPage implements OnInit {
             this.makermap.forEach(marker => {
               this.marker(marker);
             });
+            console.log(this.makermap)
           }
           this.loading.dismissOnPageChange();
         }, 5000);
